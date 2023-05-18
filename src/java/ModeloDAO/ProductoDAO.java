@@ -9,6 +9,7 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -51,7 +52,7 @@ public class ProductoDAO {
             ps.setInt(1, stock);
             ps.setInt(2, id);
             ps.executeUpdate();            
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método actualizarstock de la clase ProductoDAO...\n"+e.getMessage());
         }
         return r;
@@ -72,13 +73,13 @@ public class ProductoDAO {
                 em.setEstado(rs.getString(5));
                 lista.add(em);
            }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método listar de la clase ProductoDAO...\n"+e.getMessage());
         }
        return lista;
     }
     public int agregar(ProductoDTO em){
-        String sql="insert into empleado(Nombres, Precio, Stock, Estado)values(?,?,?,?)";
+        String sql="insert into producto(Nombres, Precio, Stock, Estado)values(?,?,?,?)";
         try {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
@@ -87,7 +88,7 @@ public class ProductoDAO {
             ps.setString(3, em.getStock());
             ps.setString(4, em.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método agregar de la clase ProductoDAO...\n"+e.getMessage());
         }
         return r;
@@ -106,7 +107,7 @@ public class ProductoDAO {
                 emp.setStock(rs.getString(4));
                 emp.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método listarId de la clase ProductoDAO...\n"+e.getMessage());
         }
         return emp;
@@ -123,7 +124,7 @@ public class ProductoDAO {
             ps.setString(4, em.getEstado());
             ps.setInt(5, em.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método actualizar de la clase ProductoDAO...\n"+e.getMessage());
         }
         return r;
@@ -134,9 +135,9 @@ public class ProductoDAO {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método delete de la clase ProductoDAO...\n"+e.getMessage());
         }
-        ;
+        
     }
 }

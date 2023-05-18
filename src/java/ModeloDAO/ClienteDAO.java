@@ -9,9 +9,9 @@ import config.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,7 +38,7 @@ public class ClienteDAO {
                 c.setDirec(rs.getString(4));
                 c.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método buscar de la clase ClienteDAO...\n"+e.getMessage());
         }
         return c;
@@ -59,7 +59,7 @@ public class ClienteDAO {
                 em.setEstado(rs.getString(5));
                 lista.add(em);
            }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método listar de la clase ClienteDAO...\n"+e.getMessage());
         }
        return lista;
@@ -74,7 +74,7 @@ public class ClienteDAO {
             ps.setString(3, em.getDirec());
             ps.setString(4, em.getEstado());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método agregar de la clase ClienteDAO...\n"+e.getMessage());
         }
         return r;
@@ -92,7 +92,7 @@ public class ClienteDAO {
                 emp.setDirec(rs.getString(4));
                 emp.setEstado(rs.getString(5));
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método listarId de la clase ClienteDAO...\n"+e.getMessage());
         }
         return emp;
@@ -109,7 +109,7 @@ public class ClienteDAO {
             ps.setString(4, em.getEstado());
             ps.setInt(5, em.getId());
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método actualizar de la clase ClienteDAO...\n"+e.getMessage());
         }
         return r;
@@ -120,7 +120,7 @@ public class ClienteDAO {
             con=cn.Conexion();
             ps=con.prepareStatement(sql);
             ps.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error en el método delete de la clase ClienteDAO...\n"+e.getMessage());
         }
     }
