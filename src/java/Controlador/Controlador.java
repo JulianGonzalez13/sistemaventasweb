@@ -245,7 +245,16 @@ public class Controlador extends HttpServlet {
                         vdao.guardarDetalleVentas(v);
                     }
                     lista=new ArrayList<>();
-                    break;
+                break;
+                case "Eliminar":
+                    request.setAttribute("c", cl);
+                    request.setAttribute("nserie", numeroserie);
+                    ide=Integer.parseInt(request.getParameter("id"));
+                    lista.remove(ide);
+                    item-=1;
+                    request.setAttribute("lista", lista);   
+                    request.getRequestDispatcher("Controlador?menu=NuevaVenta&accion=default").forward(request, response);
+                break;
                 default:
                     numeroserie=vdao.GenerarSerie();
                     if(numeroserie==null){

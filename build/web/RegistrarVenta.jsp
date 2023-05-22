@@ -108,8 +108,7 @@
                                     <td>${list.getCantidad()}</td>
                                     <td>${list.getSubtotal()}</td>
                                     <td>
-                                        <a href="$" class="btn btn-warning">Editar</a>
-                                        <a href="$" class="btn btn-danger">Eliminar</a>
+                                        <a href="Controlador?menu=NuevaVenta&accion=Eliminar&id=${list.getItem()-1}" class="btn btn-danger">Eliminar</a>
                                     </td>
                                 </tr>
                                 </c:forEach>
